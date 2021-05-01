@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <title>Go-Dict</title>
+        <style>
+             body {
+                font-family: 'Noto Sans JP', sans-serif;
+                
+             }
+
+             #form {
+                 text-align: center;
+                 margin-top: 10%;          
+             }
+
+             #searchBar {
+                 width: 400px;
+                 height: 35px;
+             }
+
+        </style>
+    </head>
+    <body>
+        
+        <form id="form" onsubmit="return false;">
+            <h1>Google Dictionary</h1>
+            <input type = "text" id = "searchBar"/><br><br>
+            <button id = "btnAdd" onclick = "addItem()">Add</button>
+            <button id = "btnForward" onclick = "searchItem()">Search</button>
+            <button id = "btnDelete" onclick = "delItem()">Delete</button>
+        </form>
+             
+        <script>
+               alert("To search for a word in the dictionary you must first add it!");
+               var itemList = new Map();
+
+               function addItem() {              
+                        itemList[document.getElementById("searchBar").value] = true;
+                        alert("THE WORD HAS BEEN ADDED!");                               
+               }
+               function delItem() {
+                       location.reload();
+                       alert("THE WORD NO LONGER EXISTS!");
+                       itemList[document.getElementById("searchBar").value] = false;                      
+               }
+               
+               function searchItem() {
+                   var item = document.getElementById("searchBar").value;
+                   if(itemList[item] === true && item != "") {
+                        document.getElementById("btnForward").onclick = function() {
+                                location.href = "https://dexonline.ro/definitie/" + item;
+                        }
+                   } else {
+                         alert("ADD THE WORD!");
+                   }
+               }
+        </script>
+    </body>
+</html>
