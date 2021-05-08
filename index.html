@@ -5,7 +5,8 @@
         <title>Go-Dict</title>
         <style>
              body {
-                font-family: 'Noto Sans JP', sans-serif; 
+                font-family: 'Noto Sans JP', sans-serif;
+                
              }
 
              #form {
@@ -28,19 +29,22 @@
             <button id = "btnAdd" onclick = "addItem()">Add</button>
             <button id = "btnForward" onclick = "searchItem()">Search</button>
             <button id = "btnDelete" onclick = "delItem()">Delete</button>
+            <p id = "notification"></p>
         </form>
              
         <script>
-               alert("To search for a romanian word in the dictionary you must first add it!");
+               document.getElementById("notification").style.color = "green"
+               document.getElementById("notification").innerHTML = "To search for a romanian word in the dictionary you must first add it!";
                var itemList = new Map();
 
                function addItem() {              
                         itemList[document.getElementById("searchBar").value] = true;
-                        alert("THE WORD HAS BEEN ADDED!");                               
+                        document.getElementById("notification").style.color = "green"
+                        document.getElementById("notification").innerHTML = "The word was added successfully!";                           
                }
                function delItem() {
-                       location.reload();
-                       alert("THE WORD NO LONGER EXISTS!");
+                       document.getElementById("notification").style.color = "red"
+                       document.getElementById("notification").innerHTML = "The word no longer exists!";
                        itemList[document.getElementById("searchBar").value] = false;                      
                }
                
@@ -51,7 +55,8 @@
                                 location.href = "https://dexonline.ro/definitie/" + item;
                         }
                    } else {
-                         alert("ADD THE WORD!");
+                        document.getElementById("notification").style.color = "red"
+                        document.getElementById("notification").innerHTML = "Add the word!";
                    }
                }
         </script>
